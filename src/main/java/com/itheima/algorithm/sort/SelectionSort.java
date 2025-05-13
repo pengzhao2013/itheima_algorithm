@@ -8,7 +8,10 @@ import java.util.Arrays;
  */
 public class SelectionSort {
     public static void sort(int[] arr) {
+        // 选择轮数 arr.length - 1
+        // 交换的索引位置arr.length - 1 每次递减
         for (int right = arr.length - 1; right > 0; right--) {
+            // 假设最右侧是最大的
             int max = right;
             for (int i = 0; i < right - 1; i++) {
                 if (arr[i] > arr[max]) {

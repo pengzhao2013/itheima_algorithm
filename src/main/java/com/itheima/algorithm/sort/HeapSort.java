@@ -17,6 +17,11 @@ public class HeapSort {
         }
     }
 
+    /**
+     * 弗洛伊德方法建堆：O(n) 上浮方法建堆：n(logn)
+     * @param array
+     * @param size
+     */
     private static void heapify(int[] array, int size) {
         for (int i = size / 2 - 1; i >= 0; i--) {
             downRecursion(array, i, size); // 从非叶子节点开始倒着来
@@ -51,7 +56,7 @@ public class HeapSort {
                 max = right;
             }
             if (max == parent) {
-                // 没找到更大孩子
+                // 没找到更大孩子或没有孩子了
                 break;
             }
             swap(array, max, parent);
