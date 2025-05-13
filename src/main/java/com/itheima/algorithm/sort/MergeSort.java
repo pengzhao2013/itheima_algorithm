@@ -3,6 +3,7 @@ package com.itheima.algorithm.sort;
 import java.util.Arrays;
 
 /**
+ * 递归 自上而下的方式
  * @author zpstart
  * @create 2025-04-15 17:09
  */
@@ -13,9 +14,9 @@ public class MergeSort {
      * @param a1
      * @param i 第一个有序范围
      * @param iEnd
-     * @param j
+     * @param j 第二个有序范围
      * @param jEnd
-     * @param a2 临时数组
+     * @param a2 临时数组 要和原始数组大小一致
      * @return void
      */
     public static void merge(int[] a1, int i, int iEnd, int j,
@@ -40,13 +41,13 @@ public class MergeSort {
     }
 
     public static void sort(int[] a1) {
-        int[] a2 = new int[a1.length];
+        int[] a2 = new int[a1.length]; // 临时数组给合并用的
         split(a1, 0, a1.length - 1, a2);
     }
 
     public static void split(int[] a1, int left, int right, int[] a2) {
-        int[] array = Arrays.copyOfRange(a1, left, right + 1);
-//        System.out.println(Arrays.toString(array));
+        int[] array = Arrays.copyOfRange(a1, left, right + 1); // 为了打印
+        System.out.println(Arrays.toString(array));
         // 2.治
         if (left == right) {
             return;
@@ -56,7 +57,7 @@ public class MergeSort {
         split(a1, left, m, a2);
         split(a1, m + 1, right, a2);
         merge(a1, left, m, m + 1, right, a2);
-        System.arraycopy(a2, left, a1, left, right - left + 1);
+        System.arraycopy(a2, left, a1, left, right - left + 1); // merge后把a2再拷贝回a1
     }
 
     public static void main(String[] args) {

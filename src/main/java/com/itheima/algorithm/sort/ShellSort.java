@@ -7,10 +7,26 @@ import java.util.Arrays;
  * @create 2025-04-15 16:32
  */
 public class ShellSort {
-    public static void sort(int[] arr) {
+    public static void sort0(int[] arr) {
         // a.length / 2 / 2  =1
         for (int gap = arr.length >> 1; gap >= 1; gap = gap >> 1) {
-            for (int low = gap; low < arr.length; low += gap) {
+            for (int low = gap; low < arr.length; low++) {
+                int t = arr[low];
+                int i = low - gap;
+                while (i >= 0 && t < arr[i]) {
+                    arr[i + gap] = arr[i];
+                    i -= gap;
+                }
+                if (i + gap != low) {
+                    arr[i + gap] = t;
+                }
+            }
+        }
+    }
+
+    public static void sort(int[] arr) {
+        for (int gap = arr.length >> 1; gap >= 1; gap = gap >> 1) {
+            for (int low = gap; low < arr.length; low++) {
                 int t = arr[low];
                 int i = low - gap;
                 while (i >= 0 && t < arr[i]) {
@@ -25,7 +41,7 @@ public class ShellSort {
     }
 
     public static void main(String[] args) {
-        int[] a = {9, 3, 7, 2, 5, 8, 1, 4};
+        int[] a = {9, 3, 7, 2, 5, 8, 1, 4, 11, 10};
         System.out.println(Arrays.toString(a));
 //        sort(a);
 //        insertionNotRecursion(a);
