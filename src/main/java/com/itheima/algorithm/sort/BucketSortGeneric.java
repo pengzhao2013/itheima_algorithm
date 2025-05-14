@@ -8,7 +8,7 @@ import java.util.Arrays;
  * @Author : zpstart
  * @Date: 2025-05-14 16:35
  */
-public class BucketSort {
+public class BucketSortGeneric {
     public static void main(String[] args) {
         int[] ages = {9, 0, 5, 1, 3, 2, 4, 6, 8, 7};
         sort(ages, 3);

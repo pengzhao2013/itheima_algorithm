@@ -7,7 +7,7 @@ import java.util.Arrays;
  * @Date: 2025-05-14 15:38
  */
 public class CountingSort {
-    public static void sort(int[] a) {
+    public static void CountingSortPositive(int[] a) {
         int max = a[0];
         for (int i = 1; i < a.length; i++) {
             if (a[i] > max) {
