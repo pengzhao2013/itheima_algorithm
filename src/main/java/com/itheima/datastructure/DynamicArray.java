@@ -17,6 +17,10 @@ public class DynamicArray implements Iterable<Integer>{
 //    private int[] array = new int[capacity];
     private int[] array = {};
 
+    public int[] array() {
+        return Arrays.copyOf(array, size);
+    }
+
     public void addLast(int element) {
         add(size, element);
     }

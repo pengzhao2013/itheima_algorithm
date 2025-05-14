@@ -4,6 +4,7 @@ import java.util.Arrays;
 import java.util.concurrent.ThreadLocalRandom;
 
 /**
+ * 双边循环
  * @author zpstart
  * @create 2025-04-15 21:17
  */
@@ -16,16 +17,17 @@ public class QuickSortHoarse {
         if (left >= right) {
             return;
         }
-        int p = partition(arr, left, right); // p-基准点元素索引
+        int p = partitionDuplicate(arr, left, right); // p-基准点元素索引
         quick(arr, left, p - 1);
 
         quick(arr, p + 1, right);
     }
 
     private static int partition(int[] arr, int left, int right) {
-        int index = ThreadLocalRandom.current().nextInt(right - left + 1) + left;
+        // right - left + 1范围内元素个数
+        int index = ThreadLocalRandom.current().nextInt(right - left + 1) + left; // nextInt(3) [0,2]
         swap(arr, index, left);
-        int pv = arr[left]; // 基准点
+        int pv = arr[left]; // 基准点的值
         int i = left;
         int j = right;
         while (i < j) {
@@ -33,13 +35,44 @@ public class QuickSortHoarse {
             while (i < j && arr[j] > pv) {
                 j--;
             }
+            // i 左->右 找大
             while (i < j && arr[i] <= pv) {
                 i++;
             }
+            // 找到后交换
             swap(arr, i ,j);
         }
+        // 交换基准点元素与i
         swap(arr, left, i);
         return i;
+    }
+
+    /**
+     * 优化大量重复元素的情况
+     * @param arr
+     * @param left
+     * @param right
+     * @return
+     */
+    private static int partitionDuplicate(int[] arr, int left, int right) {
+        int pv = arr[left]; // 基准点的值
+        int i = left + 1;
+        int j = right;
+        while (i <= j) {
+            while (i <= j && arr[i] < pv) { // >=了停下来
+                i++;
+            }
+            while (i <= j && arr[j] > pv) {
+                j--;
+            }
+            if (i <= j) {
+                swap(arr, i ,j);
+                i++;
+                j--;
+            }
+        }
+        swap(arr, j, left);
+        return j;
     }
 
     private static void swap(int[] array, int i, int j) {
@@ -49,7 +82,8 @@ public class QuickSortHoarse {
     }
 
     public static void main(String[] args) {
-        int[] a = {9, 3, 7, 2, 5, 8, 1, 4};
+//        int[] a = {9, 3, 7, 2, 5, 8, 1, 4};
+        int[] a = {4, 2, 1, 3, 2, 1, 4};
         System.out.println(Arrays.toString(a));
         sort(a);
         System.out.println(Arrays.toString(a));

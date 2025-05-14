@@ -3,6 +3,7 @@ package com.itheima.algorithm.sort;
 import java.util.Arrays;
 
 /**
+ * Lomuto分区 单边循环
  * @author zpstart
  * @create 2025-04-15 20:39
  */
@@ -22,11 +23,14 @@ public class QuickSortLomuto {
     }
 
     private static int partition(int[] arr, int left, int right) {
-        int pv = arr[right];
+        // 最右侧元素作为基准点
+        // j找比基准点小的 i找比基准点大的 找到后交换
+        // 最后基准点与i交换 i即为基准点最终索引
+        int pv = arr[right]; // 基准点元素的值
         int i = left;
         int j = left;
         while (j < right) {
-            if (arr[j] < pv) {
+            if (arr[j] < pv) { // 找到比基准点小的了，没有找到大的
                 if (i != j) {
                     swap(arr, i, j);
                 }
@@ -34,7 +38,7 @@ public class QuickSortLomuto {
             }
             j++;
         }
-        swap(arr, i ,right);
+        swap(arr, i, right);
         return i;
     }
 
