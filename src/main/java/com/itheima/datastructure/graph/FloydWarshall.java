@@ -2,6 +2,7 @@ package com.itheima.datastructure.graph;
 
 import java.io.IOException;
 import java.util.Arrays;
+import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
@@ -83,6 +84,7 @@ public class FloydWarshall {
     static void floydWarshall(List<Vertex> graph) {
         int size = graph.size();
         int[][] dist = new int[size][size];
+        Vertex[][] prev = new Vertex[size][size];
         // 1）初始化
         for (int i = 0; i < size; i++) {
             Vertex v = graph.get(i);
@@ -94,10 +96,11 @@ public class FloydWarshall {
                     dist[i][j] = 0;
                 } else {
                     dist[i][j] = map.getOrDefault(u, Integer.MAX_VALUE); // 拿到u 就用权重更新
+                    prev[i][j] = map.get(u) != null ? v : null;
                 }
             }
         }
-        print(dist);
+        print(prev);
         System.out.println("*************");
         // 2）看能否借路到达其它顶点
         /*
@@ -115,10 +118,17 @@ public class FloydWarshall {
                     if (dist[i][k] != Integer.MAX_VALUE && dist[k][j] != Integer.MAX_VALUE &&
                             dist[i][k] + dist[k][j] < dist[i][j]) {
                         dist[i][j] = dist[i][k] + dist[k][j];
+                        prev[i][j] = prev[k][j];
                     }
                 }
             }
-            print(dist);
+//            print(dist);
+        }
+        print(prev);
+        for (int i = 0; i < size; i++) {
+            for (int j = 0; j < size; j++) {
+                path(prev, graph, i, j);
+            }
         }
     }
 
@@ -131,6 +141,19 @@ public class FloydWarshall {
                     .collect(Collectors.joining(",", "[", "]")));
         }
     }
+
+    static void path(Vertex[][] prev, List<Vertex> graph, int i, int j) {
+        LinkedList<String> stack = new LinkedList<>();
+        System.out.print("[" + graph.get(i).name + "," + graph.get(j).name + "] ");
+        stack.push(graph.get(j).name);
+        while (i != j) {
+            Vertex p = prev[i][j];
+            stack.push(p.name);
+            j = graph.indexOf(p);
+        }
+        System.out.println(stack);
+    }
+
 
     static void print(Vertex[][] prev) {
         System.out.println("-------------------------");
