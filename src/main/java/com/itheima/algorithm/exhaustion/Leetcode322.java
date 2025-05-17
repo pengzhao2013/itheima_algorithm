@@ -34,7 +34,7 @@ public class Leetcode322 {
         // 情况2:剩余金额>0
         // 情况3:剩余金额==0
         if (remainder < 0) {
-            print("无解：", stack);
+//            print("无解：", stack);
         } else if (remainder == 0) {
             if (min == -1) {
                 min = count.get();
@@ -64,7 +64,7 @@ public class Leetcode322 {
 
     public static void main(String[] args) {
         Leetcode322 leetcode322= new Leetcode322();
-        int count = leetcode322.coinChange(new int[]{5, 2, 1}, 5);
+        int count = leetcode322.coinChange(new int[]{5, 2, 1}, 18);
         System.out.println(count);
     }
 }
