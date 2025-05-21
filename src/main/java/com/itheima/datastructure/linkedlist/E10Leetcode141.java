@@ -18,6 +18,19 @@ public class E10Leetcode141 {
         return false;
     }
 
+    public boolean hasCycle1(ListNode head) {
+        ListNode h = head;
+        ListNode t = head;
+        while (h != null && h.next != null) {
+            t = t.next;
+            h = h.next.next;
+            if (h == t) {
+                return true;
+            }
+        }
+        return false;
+    }
+
     public ListNode detectCycle(ListNode head) {
         ListNode h = head;
         ListNode t = head;
@@ -25,7 +38,7 @@ public class E10Leetcode141 {
             t = t.next;
             h = h.next.next;
             if (h == t) {
-                t = head;
+                t = head; // 从它们第一次相遇开始，龟回到起点，兔子保持原位不变
                 while (true) {
                     if (t == h) { // 如果龟回到起点，此时兔子也恰好在起点，就不用动了 此时就是第二次相遇 就是环的入口
                         return t;
@@ -37,4 +50,22 @@ public class E10Leetcode141 {
         }
         return null;
     }
+    public ListNode detectCycle11(ListNode head) {
+        ListNode h = head;
+        ListNode t = head;
+        while (h != null && h.next != null) {
+            t = t.next;
+            h = h.next.next;
+            if (h == t) {
+                t = head;
+                if (t == h) {
+                    return t;
+                }
+                t = t.next;
+                h = h.next;
+            }
+        }
+        return null;
+    }
+
 }

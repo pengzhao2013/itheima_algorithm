@@ -50,6 +50,39 @@ public class E01Leetcode103 {
         return result;
     }
 
+    public static List<List<Integer>> levelOrder11(TreeNode root) { // 按树结构输出
+        List<List<Integer>> result = new ArrayList<>();
+        LinkedList<TreeNode> queue = new LinkedList<>();
+        queue.offer(root);
+
+        int c1 = 1; // 当前层节点数
+        boolean odd = true;
+        while(!queue.isEmpty()) {
+            LinkedList<Integer> deque = new LinkedList<>();
+            int c2 = 0;
+            for (int i = 0; i < c1; i++) {
+                TreeNode poll = queue.poll();
+                if (odd) {
+                    deque.offerLast(poll.val);
+                } else {
+                    deque.offerFirst(poll.val);
+                }
+                if (poll.left != null) {
+                    queue.offer(poll.left);
+                    c2++;
+                }
+                if (poll.right != null) {
+                    queue.offer(poll.right);
+                    c2++;
+                }
+            }
+            c1 = c2;
+            odd = !odd;
+            result.add(deque);
+        }
+        return result;
+    }
+
     public static void main(String[] args) {
         TreeNode root = new TreeNode(
                 new TreeNode(

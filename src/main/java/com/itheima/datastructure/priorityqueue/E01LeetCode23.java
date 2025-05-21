@@ -3,6 +3,9 @@ package com.itheima.datastructure.priorityqueue;
 
 import com.itheima.datastructure.linkedlist.ListNode;
 
+import java.util.Comparator;
+import java.util.PriorityQueue;
+
 /**
  * 合并多个有序链表
  *
@@ -30,6 +33,26 @@ public class E01LeetCode23 {
         return s.next;
     }
 
+    public static ListNode mergeKLists1(ListNode[] lists) {
+        PriorityQueue<ListNode> minHeap = new PriorityQueue<>(Comparator.comparingInt(o -> o.val));
+        for (ListNode headNode : lists) {
+            if (headNode != null) {
+                minHeap.offer(headNode);
+            }
+        }
+        ListNode s = new ListNode(-1, null);
+        ListNode p = s;
+        while (!minHeap.isEmpty()) {
+            ListNode minNode = minHeap.poll();
+            p.next = minNode;
+            p = minNode;
+            if (minNode.next != null) {
+                minHeap.offer(minNode.next);
+            }
+        }
+        return s.next;
+    }
+
     public static void main(String[] args) {
         ListNode[] lists = {
                 ListNode.of(-8,-7,-7,-5,1,1,3,4),
@@ -37,7 +60,7 @@ public class E01LeetCode23 {
                 ListNode.of(-2),
                 ListNode.of(2)
         };
-        ListNode listNode = mergeKLists(lists);
+        ListNode listNode = mergeKLists1(lists);
         System.out.println(listNode);
     }
 }

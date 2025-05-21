@@ -27,4 +27,24 @@ public class E02Leetcode3 {
         }
         return max;
     }
+
+    public int lengthOfLongestSubstring1(String s) {
+        int begin = 0;
+        int end;
+        int max = 0;
+        char[] charArray = s.toCharArray();
+        HashMap<Character, Integer> map = new HashMap<>();
+        for (int i = 0; i < charArray.length; i++) {
+            char c = charArray[i];
+            if (map.containsKey(c)) {
+                begin = Math.max(map.get(c) + 1, begin);
+                map.put(c, i);
+            } else {
+                map.put(c, i);
+            }
+            end = i;
+            max = Math.max(end - begin + 1, max);
+        }
+        return max;
+    }
 }

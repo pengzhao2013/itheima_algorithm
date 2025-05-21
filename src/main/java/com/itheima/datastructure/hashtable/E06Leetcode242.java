@@ -28,4 +28,13 @@ public class E06Leetcode242 {
         }
         return array;
     }
+
+    private int[] getKey2(String str) {
+        int[] key = new int[26];
+        char[] charArray = str.toCharArray();
+        for (char c : charArray) {
+            key[c - 97]++;
+        }
+        return key;
+    }
 }

@@ -1,9 +1,6 @@
 package com.itheima.datastructure.hashtable;
 
-import java.util.HashMap;
-import java.util.Map;
-import java.util.Optional;
-import java.util.Set;
+import java.util.*;
 
 /**
  * @Author : zpstart
@@ -12,6 +9,7 @@ import java.util.Set;
 public class E08Leetcode819 {
     public static String mostCommonWord0(String paragraph, String[] banned) {
         String[] split = paragraph.toLowerCase().split("[^A-Za-z]+");
+//        System.out.println(Arrays.toString(split));
         Set<String> set = Set.of(banned); // java8要一个个遍历
         Map<String, Integer> map = new HashMap<>();
         for (String key : split) {
@@ -23,6 +21,19 @@ public class E08Leetcode819 {
 //            map.put(key, ++value);
         }
         System.out.println(map);
+        Optional<Map.Entry<String, Integer>> optional = map.entrySet().stream().max(Map.Entry.comparingByValue());
+        return optional.map(Map.Entry::getKey).orElse(null);
+    }
+
+    public static String mostCommonWord00(String paragraph, String[] banned) {
+        String[] split = paragraph.toLowerCase().split("^[A-Za-z]+");
+        Map<String, Integer> map = new HashMap<>();
+        Set<String> set = Set.of(banned);
+        for (String key : split) {
+            if (!set.contains(key)) {
+                map.compute(key, (k, v) -> v == null ? 1 : v + 1);
+            }
+        }
         Optional<Map.Entry<String, Integer>> optional = map.entrySet().stream().max(Map.Entry.comparingByValue());
         return optional.map(Map.Entry::getKey).orElse(null);
     }
@@ -88,7 +99,7 @@ public class E08Leetcode819 {
     public static void main(String[] args) {
         String paragraph = "Bob hit a ball, the hit BALL flew far after it was hit.";
         String[] banned = {"hit"};
-        System.out.println(mostCommonWord(paragraph, banned));
+        System.out.println(mostCommonWord0(paragraph, banned));
 
     }
 }

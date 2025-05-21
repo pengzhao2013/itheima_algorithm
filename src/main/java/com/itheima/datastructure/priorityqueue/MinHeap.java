@@ -41,6 +41,21 @@ public class MinHeap {
         return true;
     }
 
+    public boolean offer1(ListNode offered) {
+        if (isFull()) {
+            return false;
+        }
+        int child = size++;
+        int parent = (child - 1) / 2;
+        if (child > 0 && array[parent].val > offered.val) {
+            array[child] = array[parent];
+            child = parent;
+            parent = (child - 1) / 2;
+        }
+        array[parent] = offered;
+        return true;
+    }
+
     public ListNode poll() {
         if (isEmpty()) {
             return null;
@@ -60,6 +75,22 @@ public class MinHeap {
             min = left;
         }
         if (right < size && array[right].val < array[min].val) {
+            min = right;
+        }
+        if (min != parent) {
+            swap(min, parent);
+            down(min);
+        }
+    }
+
+    private void down1(int parent) {
+        int left = parent * 2 + 1;
+        int right = left + 1;
+        int min = parent;
+        if (left < size && array[left].val < array[parent].val) {
+            min = left;
+        }
+        if (right < size && array[right].val < array[parent].val) {
             min = right;
         }
         if (min != parent) {

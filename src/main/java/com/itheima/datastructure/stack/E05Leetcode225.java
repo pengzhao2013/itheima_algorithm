@@ -32,7 +32,6 @@ public class E05Leetcode225 {
         for (int i = 0; i < size; i++) {
             queue.offer(queue.poll());
         }
-        size++;
     }
 
     public int pop() {

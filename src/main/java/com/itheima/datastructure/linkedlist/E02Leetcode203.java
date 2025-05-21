@@ -20,6 +20,20 @@ public class E02Leetcode203 {
         return s.next;
     }
 
+    public ListNode removeElements11(ListNode head, int val) {
+        ListNode s = new ListNode(-1, head);
+        ListNode p1 = s;
+        ListNode p2;
+        while ((p2 = p1.next) != null) {
+            if (p2.val == val) {
+                p1.next = p2.next;
+            } else {
+                p1 = p1.next;
+            }
+        }
+        return s.next;
+    }
+
     public ListNode removeElements(ListNode p, int val) {
         if (p == null) {
             return null;
@@ -32,6 +46,18 @@ public class E02Leetcode203 {
             p.next = removeElements(p.next, val);
             return p;
         }
+    }
+
+    public ListNode removeElements22(ListNode p, int val) {
+        if (p == null) {
+            return null;
+        }
+        if (p.val == val) {
+            return removeElements22(p.next, val);
+        } else {
+            p.next = removeElements22(p.next, val);
+        }
+        return p;
     }
 
     public static void main(String[] args) {

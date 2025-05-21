@@ -1,5 +1,6 @@
 package com.itheima.datastructure.stack.exer;
 
+import java.util.LinkedList;
 import java.util.Stack;
 
 /**
@@ -30,4 +31,29 @@ public class E01Leetcode20_2 {
         }
         return stack.isEmpty();
     }
+    public static boolean isValid1(String s) {
+        char[] charArray = s.toCharArray();
+        LinkedList<Character> stack = new LinkedList<>();
+        for (int i = 0; i < charArray.length; i++) {
+            char c = charArray[i];
+            switch (c) {
+                case '(':
+                    stack.push(')');
+                    continue;
+                case '[':
+                    stack.push(']');
+                    continue;
+                case '{':
+                    stack.push('}');
+                    continue;
+            }
+            if (!stack.isEmpty() && c == stack.peek()) {
+                stack.poll();
+            } else {
+                return false;
+            }
+        }
+        return stack.isEmpty();
+    }
+
 }

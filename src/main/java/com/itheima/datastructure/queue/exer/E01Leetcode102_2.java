@@ -39,6 +39,32 @@ public class E01Leetcode102_2 {
         }
         return result;
     }
+    public static List<List<Integer>> levelOrder11(TreeNode root) {
+        List<List<Integer>> result = new ArrayList<>();
+        int c1 = 1;
+        LinkedList<TreeNode> queue = new LinkedList<>();
+        queue.offer(root);
+        while (!queue.isEmpty()) {
+            int c2 = 0;
+            List<Integer> level = new ArrayList<>();
+            for (int i = 0; i < c1; i++) {
+                TreeNode poll = queue.poll();
+                level.add(poll.val);
+                if (poll.left != null) {
+                    queue.offer(poll.left);
+                    c2++;
+                }
+                if (poll.right != null) {
+                    queue.offer(poll.right);
+                    c2++;
+                }
+            }
+            c1 = c2;
+            result.add(level);
+        }
+        return result;
+    }
+
 
     public static void main(String[] args) {
         TreeNode root = new TreeNode(

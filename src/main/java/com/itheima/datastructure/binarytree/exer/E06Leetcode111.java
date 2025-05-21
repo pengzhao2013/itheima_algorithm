@@ -21,4 +21,19 @@ public class E06Leetcode111 {
         }
         return Integer.min(d1, d2) + 1;
     }
+    public static int minDepth1(TreeNode node) {
+        if (node == null) {
+            return 0;
+        }
+        int d1 = minDepth1(node.left);
+        int d2 = minDepth1(node.right);
+        if (d1 == 0) {
+            return d2;
+        }
+        if (d2 == 0) {
+            return d1;
+        }
+        return Integer.min(d1, d2) + 1;
+    }
+
 }

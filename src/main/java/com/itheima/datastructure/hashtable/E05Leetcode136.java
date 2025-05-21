@@ -8,6 +8,15 @@ import java.util.Set;
  * @Date: 2025-05-13 11:14
  */
 public class E05Leetcode136 {
+    public int singleNumber1(int[] nums) {
+        Set<Integer> set = new HashSet<>();
+        for (int num : nums) {
+            if (!set.add(num)) {
+                set.remove(num);
+            }
+        }
+        return set.toArray(new Integer[0])[0];
+    }
     public int singleNumber0(int[] nums) {
         Set<Integer> set = new HashSet<>();
         for (int num : nums) {
@@ -20,6 +29,14 @@ public class E05Leetcode136 {
 
     // x ^ y ^ y = x 异或交换律
     public int singleNumber(int[] nums) {
+        int num = nums[0];
+        for (int i = 1; i < nums.length; i++) {
+            num = num ^ nums[i];
+        }
+        return num;
+    }
+
+    public int singleNumber2(int[] nums) {
         int num = nums[0];
         for (int i = 1; i < nums.length; i++) {
             num = num ^ nums[i];

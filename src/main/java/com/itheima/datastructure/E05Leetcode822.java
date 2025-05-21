@@ -1,6 +1,7 @@
 package com.itheima.datastructure;
 
 import com.itheima.datastructure.linkedlist.ListNode;
+import org.springframework.beans.factory.ListableBeanFactory;
 
 /**
  * @author zpstart
@@ -42,6 +43,27 @@ public class E05Leetcode822 {
             } else {
                 p1 = p1.next;
             }
+        }
+        return s.next;
+    }
+
+    public ListNode deleteDuplicates11(ListNode head) {
+        if (head == null || head.next == null) {
+            return head;
+        }
+        ListNode s = new ListNode(-1, head);
+        ListNode p1 = s;
+        ListNode p2;
+        ListNode p3;
+        while ((p2 = p1.next) != null && (p3 = p2.next) != null) {
+           if (p2.val == p3.val) {
+               while ((p3 = p3.next) != null && p3.val == p2.val) {
+
+               }
+               p1.next = p3;
+           } else {
+               p1 = p1.next;
+           }
         }
         return s.next;
     }

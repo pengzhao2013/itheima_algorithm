@@ -44,4 +44,27 @@ public class E05Leetcode104_3_Level {
         }
         return maxDepth;
     }
+
+    public static int maxDepth1(TreeNode node) {
+        if (node == null) {
+            return 0;
+        }
+        LinkedList<TreeNode> queue = new LinkedList<>();
+        queue.offer(node);
+        int maxDepth = 0;
+        while(!queue.isEmpty()) {
+            int size = queue.size();
+            for (int i = 0; i < size; i++) {
+                TreeNode poll = queue.poll();
+                if (poll.left != null) {
+                    queue.offer(node.left);
+                }
+                if (poll.right != null) {
+                    queue.offer(node.right);
+                }
+            }
+            maxDepth++;
+        }
+        return maxDepth;
+    }
 }

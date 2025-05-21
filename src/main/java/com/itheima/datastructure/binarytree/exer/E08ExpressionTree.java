@@ -58,23 +58,39 @@ public class E08ExpressionTree {
 
         21-3*
      */
-    public static TreeNode constructExpressionTree(String[] tokens) {
+    public static TreeNode constructExpressionTree1(String[] tokens) {
         LinkedList<TreeNode> stack = new LinkedList<>();
         for (String t : tokens) {
             switch (t) {
-                case "+":
-                case "-":
-                case "*":
-                case "/":
+                case "+", "-", "*", "/" -> { // 运算符
                     TreeNode right = stack.pop();
                     TreeNode left = stack.pop();
                     TreeNode parent = new TreeNode(t);
                     parent.left = left;
                     parent.right = right;
                     stack.push(parent);
-                    break;
-                default: // 数字
+                }
+                default -> { // 数字
                     stack.push(new TreeNode(t));
+                }
+            }
+        }
+        return stack.peek();
+    }
+
+    public static TreeNode constructExpressionTree(String[] tokens) {
+        LinkedList<TreeNode> stack = new LinkedList<>();
+        for (String token : tokens) {
+            switch (token) {
+                case "+","-","*","/" -> {
+                    TreeNode right = stack.pop();
+                    TreeNode left = stack.pop();
+                    TreeNode parent = new TreeNode(token);
+                    parent.left = left;
+                    parent.right = right;
+                    stack.push(parent);
+                }
+                default -> stack.push(new TreeNode(token));
             }
         }
         return stack.peek();

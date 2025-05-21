@@ -12,7 +12,7 @@ public class E01MergeTwoSortedArray88 {
      */
     public void merge(int[] nums1, int m, int[] nums2, int n) {
         if (nums1.length == 0) {
-            System.arraycopy(nums1, 0, nums2, 0, n);
+            System.arraycopy(nums2, 0, nums1, 0, n);
             return;
         }
         if (nums2.length == 0) {
@@ -58,6 +58,25 @@ public class E01MergeTwoSortedArray88 {
         }
         if (j == nums2.length) {
             System.arraycopy(newNum1, i, nums1, k, newNum1.length - i);
+        }
+    }
+
+    private void mergeRecursive1(int[] newNum1, int[] nums2, int[] nums1, int i, int j,
+                                int k) {
+        if (i > newNum1.length - 1) {
+            System.arraycopy(nums2, j, nums1, k, nums2.length - j);
+            return;
+        }
+        if (j > nums2.length - 1) {
+            System.arraycopy(newNum1, j, nums1, k, newNum1.length - j);
+            return;
+        }
+        if (newNum1[i] < nums2[j]) {
+            nums1[k] = newNum1[i];
+            mergeRecursive1(newNum1, nums2, nums1, i++, j, k++);
+        } else {
+            nums1[k] = nums2[j];
+            mergeRecursive1(newNum1, nums2, nums1, i, j++, k++);
         }
     }
 }

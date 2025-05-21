@@ -20,6 +20,18 @@ public class QuickSelect {
 
     }
 
+    static int quick1(int[] array, int left, int right, int i) {
+        int p = partition(array, left, right);
+        if (p == i) {
+            return array[p];
+        }
+        if (p < i) {
+            return quick1(array, p + 1, right, i);
+        } else {
+            return quick1(array, left, p - 1, i);
+        }
+    }
+
 
     private static int partition(int[] arr, int left, int right) {
         // right - left + 1范围内元素个数

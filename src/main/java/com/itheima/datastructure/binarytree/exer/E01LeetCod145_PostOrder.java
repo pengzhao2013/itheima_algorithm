@@ -1,6 +1,7 @@
 package com.itheima.datastructure.binarytree.exer;
 
 import com.itheima.datastructure.binarytree.TreeNode;
+import org.springframework.core.codec.ResourceDecoder;
 
 import java.util.ArrayList;
 import java.util.LinkedList;
@@ -18,7 +19,7 @@ public class E01LeetCod145_PostOrder {
                 new TreeNode(new TreeNode(5), 3, new TreeNode(6))
         );
 //        System.out.println(postorderTraversal1(root));
-        System.out.println(postorderTraversal2(root));
+        System.out.println(postorderTraversal3(root));
     }
     public static List<Integer> postorderTraversal1(TreeNode root) {
         List<Integer> result = new ArrayList<>();
@@ -54,6 +55,73 @@ public class E01LeetCod145_PostOrder {
                     result.add(pop.val);
                 } else {
                     curr = peek.right;
+                }
+            }
+        }
+        return result;
+    }
+
+    public static List<Integer> postorderTraversal3(TreeNode root) {
+        List<Integer> result = new ArrayList<>();
+        LinkedList<TreeNode> stack = new LinkedList<>();
+        TreeNode curr = root;
+        while (curr != null || !stack.isEmpty()) {
+            if (curr != null) {
+                stack.push(curr);
+                curr = curr.left;
+            } else {
+                TreeNode pop = stack.pop();
+                result.add(pop.val);
+                curr = pop.right;
+            }
+        }
+        return result;
+    }
+
+    public static List<Integer> postorderTraversal4(TreeNode root) {
+        ArrayList<Integer> result = new ArrayList<>();
+        LinkedList<TreeNode> stack = new LinkedList<>();
+        TreeNode curr = root;
+        TreeNode pop = null;
+        while (curr != null || !stack.isEmpty()) {
+            if (curr != null) {
+                stack.push(curr);
+                curr = curr.left;
+            } else {
+                TreeNode peek = stack.peek();
+                if (peek.right == null) {
+                    pop = stack.pop();
+                    result.add(pop.val);
+                } else if (peek.right == pop) {
+                    pop = stack.pop();
+                    result.add(pop.val);
+                } else {
+                    curr = peek.right;
+                }
+            }
+        }
+        return result;
+    }
+
+    public static List<Integer> postorderTraversal5(TreeNode root) {
+        List<Integer> result = new ArrayList<>();
+        LinkedList<TreeNode> stack = new LinkedList<>();
+        TreeNode pop = null;
+        TreeNode curr = root;
+        while (curr != null || !stack.isEmpty()) {
+            if (curr != null) {
+                stack.push(curr);
+                curr = curr.left;
+            } else {
+                TreeNode peek = stack.peek();
+                if (peek.right == null) {
+                    pop = stack.pop();
+                    result.add(pop.val);
+                } else if (peek.right == pop) {
+                    stack.pop();
+                    result.add(pop.val);
+                } else {
+                    curr = curr.right;
                 }
             }
         }

@@ -15,6 +15,16 @@ public class E01Leetcode206 {
         return n1;
     }
 
+    public ListNode reverseList111(ListNode o1) {
+        ListNode n1 = null;
+        ListNode p = o1;
+        while (p != null) {
+            n1 = new ListNode(p.val, n1);
+            p = p.next;
+        }
+        return null;
+    }
+
     public ListNode reverseList11(ListNode head) {
         if (head == null) {
             return null;
@@ -51,6 +61,16 @@ public class E01Leetcode206 {
         p.next = null;
         return last;
     }
+    public ListNode reverseList33(ListNode p) {
+        if (p == null || p.next == null) {
+            return p;
+        }
+        ListNode last = reverseList33(p.next);
+        p.next.next = p;
+        p.next = null;
+        return last;
+    }
+
 
     public ListNode reverseList4(ListNode o1) {
         if (o1 == null || o1.next == null) {
@@ -68,11 +88,40 @@ public class E01Leetcode206 {
         return n1;
     }
 
+    public ListNode reverseList44(ListNode o1) {
+        if (o1 == null || o1.next == null) {
+            return o1;
+        }
+        ListNode n1 = o1;
+        ListNode o2 = o1.next;
+        while (o2 != null) {
+            o1.next = o1.next.next;
+            o2.next = n1;
+            n1 = o2;
+            o2 = o1.next;
+        }
+        return n1;
+    }
+
     public ListNode reverseList5(ListNode o1) {
         if (o1 == null || o1.next == null) {
             return o1;
         }
         ListNode n1 = null; // 新链表 n1 = null
+        while (o1 != null) {
+            ListNode o2 = o1.next;
+            o1.next = n1;
+            n1 = o1;
+            o1 = o2;
+        }
+        return n1;
+    }
+
+    public ListNode reverseList55(ListNode o1) {
+        if (o1 == null || o1.next == null) {
+            return o1;
+        }
+        ListNode n1 = null;
         while (o1 != null) {
             ListNode o2 = o1.next;
             o1.next = n1;

@@ -1,10 +1,11 @@
 package com.itheima.datastructure.heap.exer;
 
+import java.util.PriorityQueue;
+
 /**
  * @author zpstart
  * @create 2025-05-03 18:29
  */
-
 /**
  * <h3>求数组中第 K 大的元素</h3>
  * <p>
@@ -35,8 +36,22 @@ public class E02Leetcode215 {
         return minHeap.peek();
     }
 
+    public static int findKthLargest1(int[] nums, int k) {
+        PriorityQueue<Integer> minHeap = new PriorityQueue<>();
+        for (int i = 0; i < k; i++) {
+            minHeap.offer(nums[i]);
+        }
+        for (int i = k; i < nums.length; i++) {
+            if (nums[i] > minHeap.peek()) {
+                minHeap.poll();
+                minHeap.offer(nums[i]);
+            }
+        }
+        return minHeap.peek();
+    }
+
     public static void main(String[] args) {
         int[] array = {5, 2, 4, 1, 3, 6, 0};
-        System.out.println(findKthLargest(array, 4));
+        System.out.println(findKthLargest1(array, 4));
     }
 }

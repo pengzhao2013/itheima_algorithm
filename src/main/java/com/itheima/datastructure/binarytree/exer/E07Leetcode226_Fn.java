@@ -22,4 +22,15 @@ public class E07Leetcode226_Fn {
         fn(node.left);
         fn(node.right);
     }
+
+    private static void fn1(TreeNode node) {
+        if (node == null) {
+            return;
+        }
+        TreeNode t = node.left;
+        node.left = node.right;
+        node.right = t;
+        fn1(node.left);
+        fn1(node.right);
+    }
 }

@@ -51,4 +51,14 @@ public class E07Leetcode23 {
         ListNode right = split(lists, m + 1, j);
         return mergeTwoLists(left, right);
     }
+
+    private ListNode split0(ListNode[] lists, int i, int j) {
+        if (i == j) {
+            return lists[i];
+        }
+        int m = (i + j) >>> 1;
+        ListNode left = split(lists, i, m);
+        ListNode right = split(lists, m + 1, j);
+        return mergeTwoLists(left, right);
+    }
 }
