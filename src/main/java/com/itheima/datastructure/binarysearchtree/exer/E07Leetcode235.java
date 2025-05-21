@@ -31,4 +31,17 @@ public class E07Leetcode235 {
         }
         return a;
     }
+
+    public TreeNode lowestCommonAncestor1(TreeNode root, TreeNode p, TreeNode q) {
+        TreeNode a = root;
+
+        while (p.val < a.val && q.val < a.val || p.val > a.val && q.val > a.val) {
+            if (p.val < a.val) {
+                a = a.left;
+            } else {
+                a = a.right;
+            }
+        }
+        return a;
+    }
 }

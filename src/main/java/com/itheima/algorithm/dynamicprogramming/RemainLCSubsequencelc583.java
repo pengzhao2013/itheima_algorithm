@@ -16,8 +16,8 @@ public class RemainLCSubsequencelc583 {
     public static void main(String[] args) {
         RemainLCSubsequencelc583 code = new RemainLCSubsequencelc583();
         System.out.println(code.minDistance("leetcode", "etco")); // 结果4  8-4 + 4-4 = 4
-        System.out.println(code.minDistance("eat", "sea"));       // 结果2  3-2 + 3-2 = 2
-        System.out.println(code.minDistance("park", "spake"));    // 结果3  4-3 + 5-3 = 3
+//        System.out.println(code.minDistance("eat", "sea"));       // 结果2  3-2 + 3-2 = 2
+//        System.out.println(code.minDistance("park", "spake"));    // 结果3  4-3 + 5-3 = 3
     }
 
     public int minDistance(String text1, String text2) {
@@ -36,7 +36,7 @@ public class RemainLCSubsequencelc583 {
                     dp[i][j] = Integer.max(dp[i - 1][j], dp[i][j - 1]);
                 }
             }
-//            print(dp, text2, text1);
+            print(dp, text2, text1);
         }
         return m + n - 2 * dp[m][n];
     }

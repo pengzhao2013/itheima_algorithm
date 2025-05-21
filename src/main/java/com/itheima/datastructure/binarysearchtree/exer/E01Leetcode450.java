@@ -42,6 +42,33 @@ public class E01Leetcode450 {
         s.left = node.left;
         return s;
     }
+    public TreeNode deleteNodeRecursion1(TreeNode node, int key) {
+        if (node == null) {
+            return null;
+        }
+        if (node.val < key) {
+            node.right = deleteNodeRecursion1(node.right, key);
+            return node;
+        }
+        if (node.val > key) {
+            node.left = deleteNodeRecursion1(node.left, key);
+            return node;
+        }
+        if (node.left == null) {
+            return node.right;
+        }
+        if (node.right == null) {
+            return node.left;
+        }
+        TreeNode s = node.right;
+        while (s.left != null) {
+            s = s.left;
+        }
+        s.right = delete(node.right, s.val);
+        s.left = node.left;
+        return s;
+    }
+
 
     public static void main(String[] args) {
         TreeNode treeNode2 = new TreeNode(null, 2, null);

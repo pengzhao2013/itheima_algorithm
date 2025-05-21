@@ -1,6 +1,5 @@
 package com.itheima.algorithm.divideandconquer;
 
-import java.util.Arrays;
 
 /**
  * @author zpstart
@@ -40,5 +39,29 @@ public class LongestSubstringLeetcode395 {
 
     public static void main(String[] args) {
         System.out.println(longestSubstring("aaaccbbb", 3));
+    }
+
+    static int longestSubstring1(String s, int k) {
+        if (s.length() < k) {
+            return 0;
+        }
+        int[] counts = new int[26];
+        char[] chars = s.toCharArray();
+        for (char ch : chars) {
+            counts[ch - 'a']++;
+        }
+        for (int i = 0; i < chars.length; i++) {
+            char c = chars[i];
+            int count = counts[c - 'a'];
+            if (count > 0 && count < k) {
+                int j = i + 1;
+                while (j < s.length() && counts[chars[j] - 'a'] < k) {
+                    j++;
+                }
+                return Integer.max(longestSubstring1(s.substring(0, i), k),
+                        longestSubstring1(s.substring(j), k));
+            }
+        }
+        return s.length();
     }
 }

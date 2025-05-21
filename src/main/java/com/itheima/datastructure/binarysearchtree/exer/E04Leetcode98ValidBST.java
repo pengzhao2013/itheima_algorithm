@@ -1,7 +1,9 @@
 package com.itheima.datastructure.binarysearchtree.exer;
 
 import com.itheima.datastructure.binarytree.TreeNode;
+import com.sun.source.tree.Tree;
 
+import javax.swing.*;
 import java.util.LinkedList;
 import java.util.concurrent.atomic.AtomicLong;
 
@@ -24,6 +26,25 @@ public class E04Leetcode98ValidBST {
                     return false;
                 }
                 prev = pop.val;
+                curr = pop.right;
+            }
+        }
+        return true;
+    }
+
+    public boolean isValidBSTNotRecursion1(TreeNode root) {
+        TreeNode curr = root;
+        LinkedList<TreeNode> stack = new LinkedList<>();
+        Integer prev = Integer.MIN_VALUE;
+        while (curr != null && !stack.isEmpty()) {
+            if (curr != null) {
+                stack.push(curr);
+                curr = curr.left;
+            } else {
+                TreeNode pop = stack.pop();
+                if (prev >= pop.val) {
+                    return false;
+                }
                 curr = pop.right;
             }
         }

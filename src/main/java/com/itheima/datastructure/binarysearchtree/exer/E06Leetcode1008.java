@@ -15,6 +15,14 @@ public class E06Leetcode1008 {
         return root;
     }
 
+    public TreeNode bstFromPreorder1(int[] preorder) {
+        TreeNode root = new TreeNode(preorder[0]);
+        for (int i = 1; i < preorder.length; i++) {
+            insert1(root, preorder[i]);
+        }
+        return root;
+    }
+
     private TreeNode insert(TreeNode node, int val) { // O(nlog(n))
         if (node == null) {
             return new TreeNode(val);
@@ -23,6 +31,18 @@ public class E06Leetcode1008 {
             node.right = insert(node.right, val);
         } else {
             node.left = insert(node.left, val);
+        }
+        return node;
+    }
+
+    private TreeNode insert1(TreeNode node, int val) {
+        if (node == null) {
+            return new TreeNode(val);
+        }
+        if (node.val < val) {
+            node.right = insert1(node.right, val);
+        } else {
+            node.left = insert1(node.left, val);
         }
         return node;
     }

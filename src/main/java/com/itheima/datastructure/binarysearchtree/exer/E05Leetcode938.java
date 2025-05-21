@@ -54,4 +54,19 @@ public class E05Leetcode938 {
         return node.val + rangeSumBST(node.left, low, high) +
                 rangeSumBST(node.right, low, high);
     }
+
+    public int rangeSumBST1(TreeNode node, int low, int high) {
+        if (node == null) {
+            return 0;
+        }
+        if (node.val < low) {
+            return rangeSumBST1(node.right, low, high);
+        }
+        if (node.val > high) {
+            return rangeSumBST1(node.left, low, high);
+        }
+        return node.val + rangeSumBST1(node.left, low, high) +
+                rangeSumBST1(node.right, low, high);
+    }
+
 }

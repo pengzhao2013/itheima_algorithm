@@ -43,6 +43,21 @@ public class SqrtLeecode69 {
         return r;
     }
 
+    static int mySqrt1(int x) {
+        int i = 1, j = x;
+        int r = 0;
+        while (i <= j) {
+            int m = (i + j) >>> 1;
+            if (m < x / m) {
+                i = m + 1;
+                r = m;
+            } else {
+                j = m - 1;
+            }
+        }
+        return r;
+    }
+
     public static void main(String[] args) {
         System.out.println(mySqrt(99)); // 9
         System.out.println(mySqrt(1)); // 1
