@@ -69,6 +69,7 @@ public class SumLeetcode15 {
                 // 继续查找其它的解
                 i++;
                 j--;
+                // i 和j要找下一个不重复数字
                 while (i < j && numbers[i] == numbers[i - 1]) {
                     i++;
                 }

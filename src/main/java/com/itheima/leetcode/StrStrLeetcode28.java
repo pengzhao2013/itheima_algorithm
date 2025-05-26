@@ -12,6 +12,7 @@ public class StrStrLeetcode28 {
         int i = 0;
         int j = 0;
         while (i <= origin.length - pattern.length) {
+            // 每次循环开始时j重置为0
             for (j = 0; j < pattern.length; j++) {
                 if (pattern[j] != origin[i + j]) {
                     break;

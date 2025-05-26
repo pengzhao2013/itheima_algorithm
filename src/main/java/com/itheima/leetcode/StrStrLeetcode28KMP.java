@@ -25,7 +25,7 @@ public class StrStrLeetcode28KMP {
             if (origin[i] == pattern[j]) {
                 i++;
                 j++;
-            } else if (j == 0) {
+            } else if (j == 0) {// j 还是在0
                 i++;
             } else {
                 j = lps[j - 1];
@@ -39,7 +39,7 @@ public class StrStrLeetcode28KMP {
     }
 
     /*
-        最长前后缀数组：只跟模式字符串相关
+        最长前后缀数组：只跟模式字符串相关  原理：通过相同前后缀来减少匹配的个数
         1. 索引：使用了模式字符串前 j 个字符串 - 1
         2. 值：最长前后缀的长度（恰好是匹配失败时j要跳转的位置）
      */

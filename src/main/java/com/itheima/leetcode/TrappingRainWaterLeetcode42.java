@@ -3,6 +3,7 @@ package com.itheima.leetcode;
 import java.util.LinkedList;
 
 /**
+ * 单调栈
  * @author zpstart
  * @create 2025-05-19 13:34
  */
@@ -14,12 +15,12 @@ public class TrappingRainWaterLeetcode42 {
     static int trap(int[] heights) {
         LinkedList<Data> stack = new LinkedList<>();
         int sum = 0;
-        for (int i = 0; i < heights.length; i++) {
+        for (int i = 0; i < heights.length; i++) { // left pop right
             Data right = new Data(heights[i], i);
             while (!stack.isEmpty() && stack.peek().height < right.height) {
                 Data pop = stack.pop();
                 Data left = stack.peek();
-                if (left != null) {
+                if (left != null) { // 计算水的容量
                     int width = right.i - left.i - 1;
                     int height = Math.min(left.height, right.height) - pop.height;
                     sum += width * height;

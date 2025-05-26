@@ -3,6 +3,7 @@ package com.itheima.leetcode;
 import java.util.LinkedList;
 
 /**
+ * 单调递减队列
  * @author zpstart
  * @create 2025-05-19 12:10
  */

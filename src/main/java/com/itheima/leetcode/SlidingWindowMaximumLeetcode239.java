@@ -29,7 +29,7 @@ public class SlidingWindowMaximumLeetcode239 {
 
     public static void main(String[] args) {
         System.out.println(Arrays.toString(
-                maxSlidingWindow(new int[]{1, 3, -1, -3, -4, 5, 3, 6, 7}, 3))
+                maxSlidingWindow(new int[]{0, 0, 1, 3, -1, 3, 2}, 3))
         ); //[3, 3, 5, 5, 6, 7]
 //        System.out.println(Arrays.toString(maxSlidingWindow(new int[]{7, 2, 4}, 2))); // [7, 4]
 //        System.out.println(Arrays.toString(maxSlidingWindow(new int[]{1, 3, 1, 2, 0, 5}, 3))); // [3, 3, 2, 5]
