@@ -22,21 +22,20 @@ public class E01Leetcode206 {
             n1 = new ListNode(p.val, n1);
             p = p.next;
         }
-        return null;
+        return n1;
     }
 
     public ListNode reverseList11(ListNode head) {
         if (head == null) {
             return null;
         }
-        ListNode neweHead = new ListNode(head.val, null);
         ListNode p = head;
-        while (p.next != null) {
-            ListNode next = p.next;
-            neweHead = new ListNode(next.val, neweHead);
+        ListNode newHead = null;
+        while (p != null) {
+            newHead = new ListNode(p.val, newHead);
             p = p.next;
         }
-        return neweHead;
+        return newHead;
     }
 
     public ListNode reverseList2(ListNode head) {
@@ -141,17 +140,17 @@ public class E01Leetcode206 {
             this.head = head;
         }
 
-        public void addFirst(ListNode first) {
-            first.next = head;
-            head = first;
-        }
-
         public ListNode removeFirst() {
             ListNode first = head;
             if (first != null) {
                 head = first.next;
             }
             return first;
+        }
+
+        public void addFirst(ListNode first) {
+            first.next = head;
+            head = first;
         }
     }
 

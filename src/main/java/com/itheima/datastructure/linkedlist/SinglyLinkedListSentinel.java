@@ -8,7 +8,7 @@ import java.util.function.Consumer;
  * @create 2023-07-30 11:26
  */
 public class SinglyLinkedListSentinel implements Iterable<Integer> {
-    private Node head = new Node(666, null); // 头指针指向哨兵节点
+    private Node head = new Node(Integer.MIN_VALUE, null); // 头指针指向哨兵节点
 
     @Override
     public Iterator<Integer> iterator() {
@@ -27,11 +27,6 @@ public class SinglyLinkedListSentinel implements Iterable<Integer> {
     }
 
     public void addFirst(int value) {
-        // 链表为空
-        // head = new Node(value, null);
-
-        // 链表非空
-//        head.next = new Node(value, head.next);
         insert(0, value);
     }
 
@@ -107,10 +102,6 @@ public class SinglyLinkedListSentinel implements Iterable<Integer> {
      * 向索引位置插入
      */
     public void insert(int index, int value) {
-        if (index == 0) {
-            addFirst(value);
-            return;
-        }
         Node prev = findNode(index - 1); // 上一个节点
         if (prev == null) {
             // 抛异常

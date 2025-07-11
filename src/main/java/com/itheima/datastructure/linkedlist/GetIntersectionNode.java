@@ -7,7 +7,7 @@ package com.itheima.datastructure.linkedlist;
 public class GetIntersectionNode {
     public ListNode getIntersectionNode(ListNode a, ListNode b) {
         ListNode p1 = a;
-        ListNode p2 = a;
+        ListNode p2 = b;
 
         while (true) {
             if (p1 == p2) {

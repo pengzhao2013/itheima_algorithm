@@ -31,7 +31,7 @@ public class SinglyLinkedList implements Iterable<Integer> {
         // head = new Node(value, null);
 
         // 链表非空
-        head = new Node(value, head); // head指向原来的第一个节点
+        head = new Node(value, head); // head指向原来的第一个节点 注意赋值操作执行顺序是从右到左
     }
 
     /**

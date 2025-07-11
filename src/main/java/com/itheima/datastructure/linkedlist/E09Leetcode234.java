@@ -81,7 +81,7 @@ public class E09Leetcode234 {
             p1 = p1.next;
             p2 = p2.next.next;
 
-            // 反转链表代码
+            // 反转链表代码 反转后的头节点n1不包含middle节点
             // ListNode o2 = p1; // o2即p1 ListNode o2 = = o1.next
             o1.next = n1;
             n1 = o1;

@@ -11,7 +11,8 @@ public class E01Merge2SortedArray {
     public static void main(String[] args) {
         int[] a1 = {1, 5, 6, 2, 4, 10, 11};
         int[] a2 = new int[a1.length];
-        merge(a1, 0, 2, 3, 6, a2);
+//        merge(a1, 0, 2, 3, 6, a2);
+        merge1(a1, 0, 2, 3, 6, a2, 0);
         System.out.println(Arrays.toString(a2));
         System.arraycopy(a2, 0, a1, 0, a2.length);
         System.out.println(Arrays.toString(a1));
@@ -67,13 +68,10 @@ public class E01Merge2SortedArray {
         int k = 0;
         while (i <= iEnd && j <= jEnd) {
             if (a1[i] < a1[j]) {
-                a2[k] = a1[i];
-                i++;
+                a2[k++] = a1[i++];
             } else {
-                a2[k] = a1[j];
-                j++;
+                a2[k++] = a1[j++];
             }
-            k++;
         }
         if (i > iEnd) {
             System.arraycopy(a1, j, a2, k, jEnd - j + 1);

@@ -1,7 +1,5 @@
 package com.itheima.datastructure.binarysearchtree;
 
-import com.itheima.datastructure.binarytree.TreeNode;
-
 import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;

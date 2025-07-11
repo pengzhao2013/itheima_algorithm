@@ -10,7 +10,7 @@ import java.util.List;
  * @author zpstart
  * @create 2025-05-04 10:02
  */
-public class E01LeetCode144 {
+public class E01LeetCode144_PreOrder {
     public static void main1(String[] args) {
         TreeNode root = new TreeNode(
                 new TreeNode(new TreeNode(4), 2, null),
