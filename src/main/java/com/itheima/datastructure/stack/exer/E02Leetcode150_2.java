@@ -77,9 +77,7 @@ public class E02Leetcode150_2 {
                     Integer a = stack.pop();
                     stack.push(a / b);
                 }
-                default -> {
-                    stack.push(Integer.parseInt(token));
-                }
+                default -> stack.push(Integer.parseInt(token));
             }
         }
         return stack.pop();
@@ -87,6 +85,6 @@ public class E02Leetcode150_2 {
 
     public static void main(String[] args) {
         String[] tokens = {"2","1","+","3","*"};
-        System.out.println(evalRPN(tokens));
+        System.out.println(evalRPN1(tokens));
     }
 }

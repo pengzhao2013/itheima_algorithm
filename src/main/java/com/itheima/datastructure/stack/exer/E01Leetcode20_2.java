@@ -48,7 +48,7 @@ public class E01Leetcode20_2 {
                     continue;
             }
             if (!stack.isEmpty() && c == stack.peek()) {
-                stack.poll();
+                stack.pop();
             } else {
                 return false;
             }

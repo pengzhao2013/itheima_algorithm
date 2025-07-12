@@ -1,14 +1,12 @@
 package com.itheima.datastructure.stack;
 
-import java.util.Arrays;
 import java.util.LinkedList;
-import java.util.List;
 
 /**
  * @author zpstart
  * @create 2023-09-01 11:18
  */
-public class E03InfixToSuffix { // 前面有同级或比它高的运算符,先出栈 再入栈
+public class E03InfixToSuffix { // 前面有同级或比它高的运算符,先出栈 再入栈本运算符
     public static void test() {
         int a = 10;
         int b = 20;
@@ -38,32 +36,29 @@ public class E03InfixToSuffix { // 前面有同级或比它高的运算符,先�
 
     static String infixToSuffix(String exp) {
         LinkedList<Character> stack = new LinkedList<>();
-        List<Character> characters = Arrays.asList('+', '-', '*', '/');
         StringBuilder sb = new StringBuilder(exp.length());
-        for (int i = 0; i < exp.length(); i++) {
-            char c = exp.charAt(i);
-            if (characters.contains(c)) {
-                if (stack.isEmpty()) {
-                    stack.push(c);
-                } else {
-                    if (priority(c) > priority(stack.peek())) {
+        char[] chars = exp.toCharArray();
+        for (int i = 0; i < chars.length; i++) {
+            char c = chars[i];
+            switch (c) {
+                case '+', '-', '*', '/' -> {
+                    if (stack.isEmpty() || priority(c) > priority(stack.peek())) {
                         stack.push(c);
                     } else {
-                        while (!stack.isEmpty() && priority(stack.peek()) >= priority(c)) {
+                        while (!stack.isEmpty() && priority(c) <= priority(stack.peek())) {
                             sb.append(stack.pop());
                         }
                         stack.push(c);
                     }
                 }
-            } else if (c == '(') {
-                stack.push(c);
-            } else if (c == ')') {
-                while (!stack.isEmpty() && stack.peek() != '(') {
-                    sb.append(stack.pop());
+                case '(' -> stack.push(c);
+                case ')' -> {
+                    while (!stack.isEmpty() && stack.peek() != '(') {
+                        sb.append(stack.pop());
+                    }
+                    stack.pop();
                 }
-                stack.pop();
-            } else {
-                sb.append(c);
+                default -> sb.append(c);
             }
         }
         while (!stack.isEmpty()) {
@@ -197,7 +192,7 @@ public class E03InfixToSuffix { // 前面有同级或比它高的运算符,先�
     }
 
     public static void main(String[] args) {
-        System.out.println(infixToSuffix3("(a+b)*c"));
+        System.out.println(infixToSuffix("(a+b)*c"));
         System.out.println(infixToSuffix3("a*b+c"));
         test();
     }

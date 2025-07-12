@@ -28,7 +28,7 @@ public class Solution_MoveArray {
     }
 
     private static boolean isEven(int num) {
-        return num % 2 == 0;
+        return (num & (2 - 1)) == 0;
     }
 
     public static Integer[] moveArray(int[] array) {

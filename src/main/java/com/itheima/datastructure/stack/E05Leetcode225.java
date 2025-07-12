@@ -3,6 +3,8 @@ package com.itheima.datastructure.stack;
 import com.itheima.datastructure.queue.ArrayQueue3;
 
 /**
+ * 单队列模拟栈
+ *
  * @author zpstart
  * @create 2023-09-01 18:14
  */
@@ -32,6 +34,7 @@ public class E05Leetcode225 {
         for (int i = 0; i < size; i++) {
             queue.offer(queue.poll());
         }
+        size++;
     }
 
     public int pop() {
