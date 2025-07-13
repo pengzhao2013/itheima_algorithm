@@ -18,7 +18,7 @@ public class E01LeetCod145_PostOrder {
                 new TreeNode(new TreeNode(5), 3, new TreeNode(6))
         );
 //        System.out.println(postorderTraversal1(root));
-        System.out.println(postorderTraversal3(root));
+        System.out.println(inorderTraversal3(root));
     }
     public static List<Integer> postorderTraversal1(TreeNode root) {
         List<Integer> result = new ArrayList<>();
@@ -60,7 +60,7 @@ public class E01LeetCod145_PostOrder {
         return result;
     }
 
-    public static List<Integer> postorderTraversal3(TreeNode root) {
+    public static List<Integer> inorderTraversal3(TreeNode root) {
         List<Integer> result = new ArrayList<>();
         LinkedList<TreeNode> stack = new LinkedList<>();
         TreeNode curr = root;

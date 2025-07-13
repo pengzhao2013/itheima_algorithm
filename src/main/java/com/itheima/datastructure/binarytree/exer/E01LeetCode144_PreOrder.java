@@ -68,8 +68,8 @@ public class E01LeetCode144_PreOrder {
 
         LinkedList<TreeNode> stack = new LinkedList<>();
         TreeNode curr = root;
-        TreeNode pop = null; // 最近一次弹栈的元素
-        while (curr != null || !stack.isEmpty()) {
+        TreeNode pop = null;
+        while (curr != null && !stack.isEmpty()) {
             if (curr != null) {
                 stack.push(curr);
                 colorPrintln("前:" + curr.val, 31);

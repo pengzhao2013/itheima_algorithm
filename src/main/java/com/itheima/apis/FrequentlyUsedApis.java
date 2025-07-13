@@ -1,6 +1,10 @@
 package com.itheima.apis;
 
+import com.itheima.datastructure.linkedlist.ListNode;
 import org.springframework.util.StopWatch;
+
+import java.util.Comparator;
+import java.util.PriorityQueue;
 
 /**
  * @Author: zpstart
@@ -48,5 +52,7 @@ public class FrequentlyUsedApis {
 
         // 代替取模运算
 //        array[tail & (array.length - 1)] = value;
+
+        PriorityQueue<ListNode> minHeap = new PriorityQueue<>(Comparator.comparingInt(o -> o.val));
     }
 }

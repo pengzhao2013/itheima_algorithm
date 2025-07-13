@@ -23,7 +23,7 @@ public class E05Leetcode104_1 {
      */
     public static int maxDepth(TreeNode node) {
         if (node == null) {
-            return 0;
+            return 0; // 非力扣题目改为返回 -1
         }
         int d1 = maxDepth(node.left);
         int d2 = maxDepth((node.right));
@@ -33,8 +33,8 @@ public class E05Leetcode104_1 {
         if (node == null) {
             return 0;
         }
-        int d1 = maxDepth(node.left);
-        int d2 = maxDepth(node.right);
+        int d1 = maxDepth1(node.left);
+        int d2 = maxDepth1(node.right);
         return Integer.max(d1, d2) + 1;
     }
 

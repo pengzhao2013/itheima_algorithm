@@ -18,7 +18,7 @@ public class E09Leetcode105 {
         TreeNode root = new TreeNode(rootValue);
         for (int i = 0; i < inorder.length; i++) {
             if (inorder[i] == rootValue) {
-                int[] inLeft = Arrays.copyOfRange(inorder, 0 , i);// 不包含i
+                int[] inLeft = Arrays.copyOfRange(inorder, 0, i);// 不包含i
                 int[] inRight = Arrays.copyOfRange(inorder, i + 1 , inorder.length);
 
                 int[] preLeft = Arrays.copyOfRange(preorder, 1, i + 1);

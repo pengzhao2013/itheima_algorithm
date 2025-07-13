@@ -3,6 +3,8 @@ package com.itheima.datastructure.binarysearchtree.exer;
 import com.itheima.datastructure.binarytree.TreeNode;
 
 /**
+ * 根据前序遍历的结果，可以唯一地构造出一个二叉搜索树
+ *
  * @author zpstart
  * @create 2025-05-06 22:00
  */
