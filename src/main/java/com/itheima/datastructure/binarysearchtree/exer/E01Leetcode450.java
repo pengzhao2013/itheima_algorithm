@@ -50,10 +50,6 @@ public class E01Leetcode450 {
             node.right = deleteNodeRecursion1(node.right, key);
             return node;
         }
-        if (node.val > key) {
-            node.left = deleteNodeRecursion1(node.left, key);
-            return node;
-        }
         if (node.left == null) {
             return node.right;
         }
@@ -142,7 +138,7 @@ public class E01Leetcode450 {
      * @return
      */
     private static void shift(TreeNode parent, TreeNode node, TreeNode child) {
-        if (node == parent.left){
+        if (node == parent.left) {
             parent.left = child;
         } else {
             parent.right = child;

@@ -1,9 +1,7 @@
 package com.itheima.datastructure.binarysearchtree.exer;
 
 import com.itheima.datastructure.binarytree.TreeNode;
-import com.sun.source.tree.Tree;
 
-import javax.swing.*;
 import java.util.LinkedList;
 import java.util.concurrent.atomic.AtomicLong;
 
