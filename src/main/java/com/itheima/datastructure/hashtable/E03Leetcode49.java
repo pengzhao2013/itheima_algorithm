@@ -7,7 +7,7 @@ import java.util.*;
  * @Date: 2025-05-13 10:10
  */
 public class E03Leetcode49 {
-    static class ArrayKey {
+    public static class ArrayKey {
         int[] key = new int[26];
 
         @Override

@@ -1,10 +1,10 @@
 package com.itheima.apis;
 
+import com.itheima.datastructure.hashtable.E03Leetcode49;
 import com.itheima.datastructure.linkedlist.ListNode;
 import org.springframework.util.StopWatch;
 
-import java.util.Comparator;
-import java.util.PriorityQueue;
+import java.util.*;
 
 /**
  * @Author: zpstart
@@ -54,5 +54,33 @@ public class FrequentlyUsedApis {
 //        array[tail & (array.length - 1)] = value;
 
         PriorityQueue<ListNode> minHeap = new PriorityQueue<>(Comparator.comparingInt(o -> o.val));
+    }
+
+    public List<List<String>> groupAnagrams(String[] strs) {
+        Map<E03Leetcode49.ArrayKey, List<String>> map = new HashMap<>();
+        for (String str : strs) {
+            E03Leetcode49.ArrayKey arrayKey = new E03Leetcode49.ArrayKey(str);
+            List<String> list = map.computeIfAbsent(arrayKey, key -> new ArrayList<>());
+            list.add(str);
+        }
+        return new ArrayList<>(map.values());
+    }
+
+    public static String mostCommonWord0(String paragraph, String[] banned) {
+        String[] split = paragraph.toLowerCase().split("[^A-Za-z]+");
+//        System.out.println(Arrays.toString(split));
+        Set<String> set = Set.of(banned); // java8要一个个遍历
+        Map<String, Integer> map = new HashMap<>();
+        for (String key : split) {
+            System.out.println(key);
+            if (!set.contains(key)) {
+                map.compute(key, (k, v) -> v == null ? 1 : v + 1);
+            }
+//            Integer value = map.getOrDefault(key, 0);
+//            map.put(key, ++value);
+        }
+        System.out.println(map);
+        Optional<Map.Entry<String, Integer>> optional = map.entrySet().stream().max(Map.Entry.comparingByValue());
+        return optional.map(Map.Entry::getKey).orElse(null);
     }
 }

@@ -41,6 +41,6 @@ public class RadixSort {
         phoneNumbers[3] = "16d1";
         phoneNumbers[4] = "16e8";
         phoneNumbers[5] = "13f2";
-        radix(phoneNumbers, 3);
+        radix(phoneNumbers, 4);
     }
 }
