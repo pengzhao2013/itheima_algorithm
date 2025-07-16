@@ -24,19 +24,14 @@ public class RemainLCSubsequencelc583 {
         int m = text1.length();
         int n = text2.length();
         int[][] dp = new int[m + 1][n + 1];
-        char[] chars1 = text1.toCharArray();
-        char[] chars2 = text2.toCharArray();
         for (int i = 1; i < m + 1; i++) {
-            char x = chars1[i - 1];
             for (int j = 1; j < n + 1; j++) {
-                // 二维表格从1开始,但是字符串从0开始
-                if (x == chars2[j - 1]) {
+                if (text1.charAt(i - 1) == text2.charAt(j - 1)) {
                     dp[i][j] = dp[i - 1][j - 1] + 1;
                 } else {
                     dp[i][j] = Integer.max(dp[i - 1][j], dp[i][j - 1]);
                 }
             }
-            print(dp, text2, text1);
         }
         return m + n - 2 * dp[m][n];
     }

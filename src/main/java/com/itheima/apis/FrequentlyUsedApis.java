@@ -83,4 +83,19 @@ public class FrequentlyUsedApis {
         Optional<Map.Entry<String, Integer>> optional = map.entrySet().stream().max(Map.Entry.comparingByValue());
         return optional.map(Map.Entry::getKey).orElse(null);
     }
+
+    public int eraseOverlapIntervals(int[][] intervals) {
+        Arrays.sort(intervals, Comparator.comparingInt(a -> a[1]));
+        int prev = 0;
+        int count = 1;
+        for (int i = 1; i < intervals.length; i++) {
+            if (intervals[i][1] >= intervals[prev][1]) {
+                prev = i;
+                count++;
+            }
+        }
+        return intervals.length - count;
+    }
+
+//    return Arrays.stream(dp).max().getAsInt();
 }

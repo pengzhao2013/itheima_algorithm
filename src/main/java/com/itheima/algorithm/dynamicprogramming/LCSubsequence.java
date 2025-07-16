@@ -3,7 +3,7 @@ package com.itheima.algorithm.dynamicprogramming;
 import java.util.Arrays;
 
 /**
- * 最长公共子序列
+ * 最长公共子序列 leetcode1143
  * @author zpstart
  * @create 2025-05-18 8:46
  */

@@ -28,7 +28,9 @@ public class FractionalKnapsackProblem {
 
     static class Item {
         int index;
+
         int weight;
+
         int value;
 
         public Item(int index, int weight, int value) {
