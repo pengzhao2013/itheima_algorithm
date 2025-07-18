@@ -1,7 +1,10 @@
 package com.itheima.leetcode;
 
 /**
- * <h3>某一天买入股票，未来任意一天卖出，只能卖了再买，但可以买卖多次，每笔交易有手续费，求最大利润</h3>
+ * <h3>某一天买入股票，未来任意一天卖出，只能卖了再买，但可以买卖多次，每笔交易有手续费(意味着不允许同一天卖出后
+ * 再买入) 假设在卖的时候扣手续费
+ * ，求最大利润</h3>
+ * 两个状态数组来记录每步的选择
  * @Author : zpstart
  * @Date: 2025-05-27 11:16
  */
@@ -24,7 +27,7 @@ public class SharesLeetcode714 {
         for (int price : prices) {
             // 延续上一天买的利润或上一天卖的利润-今天买的价格
             buy = Math.max(buy, sell - price);
-            // 在上次买的利润基础上卖
+            // 在上次买的利润基础上卖 假设在卖的时候扣手续费
             sell = Math.max(sell, buy + price - fee);
         }
         return sell;
