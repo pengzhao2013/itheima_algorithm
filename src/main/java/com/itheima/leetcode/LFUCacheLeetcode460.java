@@ -1,6 +1,7 @@
 package com.itheima.leetcode;
 
 import java.util.HashMap;
+import java.util.LinkedList;
 
 /**
  * 最不经常使用
@@ -70,7 +71,7 @@ public class LFUCacheLeetcode460 {
     private final HashMap<Integer, Node> kvMap =
             new HashMap<>();
 
-    private final HashMap<Integer, DoublyLinkedList> freqMap =
+    private final HashMap<Integer, LinkedList<Node>> freqMap =
             new HashMap<>();
 
     private int capacity;
@@ -93,7 +94,7 @@ public class LFUCacheLeetcode460 {
             return -1;
         }
         Node node = kvMap.get(key);
-        DoublyLinkedList oldList = freqMap.get(node.freq);
+        LinkedList oldList = freqMap.get(node.freq);
         oldList.remove(node);
         if (oldList.isEmpty() && node.freq == minFreq) {
             minFreq++;
@@ -105,7 +106,7 @@ public class LFUCacheLeetcode460 {
             freqMap.put(node.freq, list);
         }
         list.addFirst(node);*/
-        freqMap.computeIfAbsent(node.freq, k -> new DoublyLinkedList())
+        freqMap.computeIfAbsent(node.freq, k -> new LinkedList())
                 .addFirst(node);
         return node.value;
     }
@@ -120,13 +121,13 @@ public class LFUCacheLeetcode460 {
     public void put(int key, int value) {
         if (kvMap.containsKey(key)) {
             Node node = kvMap.get(key);
-            DoublyLinkedList oldList = freqMap.get(node.freq);
+            LinkedList oldList = freqMap.get(node.freq);
             oldList.remove(node);
             if (oldList.isEmpty() && node.freq == minFreq) {
                 minFreq++;
             }
             node.freq++;
-            freqMap.computeIfAbsent(node.freq, k -> new DoublyLinkedList())
+            freqMap.computeIfAbsent(node.freq, k -> new LinkedList())
                     .addFirst(node);
             node.value = value;
         } else {
@@ -137,7 +138,7 @@ public class LFUCacheLeetcode460 {
             }
             Node node = new Node(key, value);
             kvMap.put(key, node);
-            freqMap.computeIfAbsent(1, k -> new DoublyLinkedList()).addFirst(node);
+            freqMap.computeIfAbsent(1, k -> new LinkedList()).addFirst(node);
             minFreq = 1;
         }
     }

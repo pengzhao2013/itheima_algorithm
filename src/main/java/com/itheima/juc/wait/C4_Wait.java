@@ -7,25 +7,59 @@ package com.itheima.juc.wait;
 public class C4_Wait {
     private static Object monitor = new Object();
 
+    private static int count = 0;
+
     public static void main(String[] args) throws InterruptedException {
 
         new Thread(() -> {
-            System.out.println("子线程执行");
             synchronized (monitor) {
-                try {
-                    monitor.wait();
-//                    Thread.sleep(5000);
-                    System.out.println("子线程继续执行");
-                } catch (InterruptedException e) {
-                    e.printStackTrace();
+                while (count <= 100) {
+                    if ((count % 3) == 0) {
+                        System.out.println("count Thread0=" + count++);
+                        monitor.notifyAll();
+                    } else {
+                        try {
+                            monitor.wait();
+                        } catch (InterruptedException e) {
+                            throw new RuntimeException(e);
+                        }
+                    }
                 }
             }
-        }).start();
-        Thread.sleep(1000);
+        }, "count Thread1").start();
 
-        synchronized (monitor) {
-            System.out.println("主线程执行...");
-            monitor.notify();
-        }
+        new Thread(() -> {
+            synchronized (monitor) {
+                while (count <= 100) {
+                    if ((count % 3) == 1) {
+                        System.out.println("count Thread1=" + count++);
+                        monitor.notifyAll();
+                    } else {
+                        try {
+                            monitor.wait();
+                        } catch (InterruptedException e) {
+                            throw new RuntimeException(e);
+                        }
+                    }
+                }
+            }
+        }, "count Thread2").start();
+
+        new Thread(() -> {
+            synchronized (monitor) {
+                while (count <= 100) {
+                    if ((count % 3) == 2) {
+                        System.out.println("count Thread2=" + count++);
+                        monitor.notifyAll();
+                    } else {
+                        try {
+                            monitor.wait();
+                        } catch (InterruptedException e) {
+                            throw new RuntimeException(e);
+                        }
+                    }
+                }
+            }
+        }, "count Thread3").start();
     }
 }

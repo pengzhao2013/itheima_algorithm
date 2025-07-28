@@ -18,10 +18,10 @@ public class InterruptThread {
                     e.printStackTrace();
                     Thread.currentThread().interrupt();
                 }
-                log.info(Thread.currentThread().isInterrupted() + "");
+                log.info("inner0" + Thread.currentThread().isInterrupted() + "");
                 if (Thread.interrupted()) {
                     // 获取中断状态并清除标记
-                    log.info(Thread.currentThread().isInterrupted() + "");
+                    log.info("inner1" + Thread.currentThread().isInterrupted() + "");
                     break;
                 }
                 log.info("定时监控...");
@@ -30,7 +30,12 @@ public class InterruptThread {
         thread.start();
         // 只是通知线程需要中断，线程不会立马中断，只是给线程做个标记
         thread.interrupt();
-        log.info(thread.isInterrupted() + "");
-        log.info(thread.isInterrupted() + "");
+        log.info("outer0" + thread.isInterrupted() + "");
+        log.info("outer1" + thread.isInterrupted() + "");
+        try {
+            Thread.sleep(2000);
+        } catch (InterruptedException e) {
+            throw new RuntimeException(e);
+        }
     }
 }
